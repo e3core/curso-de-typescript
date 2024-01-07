@@ -1,0 +1,9 @@
+- typescript : es javascript pero con una sintasix con tipos.
+
+- typescript no trabaja en tiempo de ejecucion.
+
+- typescript se compila a javascript
+
+- typescript fue creado por microsoft en el 2012
+
+
