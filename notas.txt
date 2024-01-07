@@ -6,4 +6,9 @@
 
 - typescript fue creado por microsoft en el 2012
 
+- instalar desde npm typescript para usarla en node.js npm install -g typescript luego para compilar
+el archivo typescript a javascript tsc nombre.ts y luego paa ejecutarlo se ejecuta el js generado
+tomar en cuenta que ni node ni el navegador podran leer typescript solo javascript.
+
+- en ejecucion no tomara en cuenta los tipados
 

@@ -6,24 +6,77 @@
 
 // inferir es laccion que realiza type script para tipar un dato dependiendo el valor que se le carga
 
-const nombre = 'hector'
-let nombres: string = 'juan';
+// const nombre = 'hector'
+// let nombres: string = 'juan';
+// 
+// const numero = 2
+// let numeros: number = 34
+// 
+// const nova = null;
+// const varios: null = null
+// 
+// const nodef = undefined
+// let unico: undefined = undefined
+// 
+// // dato any = cualquier tipo de dato y que ignore el tipado de typescript
+// 
+// const anyValue: any = 'valor'
+// 
+// // unknown = es cuando no se sabe que tipo de dato es 
+// 
+// const nosabe: unknown = 'general'
+// 
+// // funciones 
+// 
+// function saludar( name: string){
+//     console.log(`hola ${name}`)
+// }
+// 
+// saludar('jose')
+// 
+// // funciones recibiendo objetos como argumentos
+// 
+// // Recibiendo el any de manera implicita
+// function contactor ( {marca, bobina} ){
+//     console.log( `el contactor marca : ${marca} y la bobina es de ${bobina}V` )
+// }
+// 
+// // 1er manera 
+// function rele ( {marca, bobina}: {marca: string, bobina: number} ){
+//     console.log(`el contactor marca : ${marca} y la bobina es de ${bobina}V`);
+// }
+// 
+// // 2da manera
+// function relevador( dispocitivo: {marca: string, bobina: number}){
+//     let {marca, bobina} = dispocitivo
+//     console.log(`el contactor marca : ${marca} y la bobina es de ${bobina}V`);
+// }
+// 
+// // los retornos si tienen inferencias
 
-const numero = 2
-let numeros: number = 34
+// function rele ( {marca, bobina}: {marca: string, bobina: number} ){
+//     console.log(`el contactor marca : ${marca} y la bobina es de ${bobina}V`)
+//     return bobina
+// }
 
-const nova = null;
-const varios: null = null
+// otra manera de realizar tipado del retorno
 
-const nodef = undefined
-let unico: undefined = undefined
+function rele ( {marca, bobina}: {marca: string, bobina: number}): number{
+    console.log(`el contactor marca : ${marca} y la bobina es de ${bobina}V`)
+    return bobina
+}
 
-// dato any = cualquier tipo de dato y que ignore el tipado de typescript
+let allenbradley = rele( {marca: 'siemens', bobina:24} )
 
-const anyValue: any = 'valor'
+// callback
+const manzanas = (fn: (name: string) => void) => { // NOTA: cuando la funcion no devueve nada se coloca void
+    fn('fruta')                             // si retorna algn valor se coloca el tipo ejemplo string
+}                                           // si no le pasas nada colocara undefined
 
-// unknown = es cuando no se sabe que tipo de dato es 
+const fruta = (name: string) => {
+    console.log(name)
+}
 
-const nosabe: unknown = 'general'
+manzanas( fruta )
 
-// 28:01
+//44:18
