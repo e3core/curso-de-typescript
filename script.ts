@@ -60,23 +60,99 @@
 // }
 
 // otra manera de realizar tipado del retorno
+// 
+// function rele ( {marca, bobina}: {marca: string, bobina: number}): number{
+//     console.log(`el contactor marca : ${marca} y la bobina es de ${bobina}V`)
+//     return bobina
+// }
+// 
+// let allenbradley = rele( {marca: 'siemens', bobina:24} )
+// 
+// // callback
+// const manzanas = (fn: (name: string) => void) => { // NOTA: cuando la funcion no devueve nada se coloca void
+//     fn('fruta')                             // si retorna algn valor se coloca el tipo ejemplo string
+// }                                           // si no le pasas nada colocara undefined
+// 
+// const fruta = (name: string) => {
+//     console.log(name)
+// }
+// 
+// manzanas( fruta )
+// 
+// 
+// //tipar las arrow functions
+// // forma 1
+// const sumar = ( a: number, b: number) : number => {
+//     return a + b
+// }
+// 
+// // forma 2
+// const resta : ( a: number,b: number) => number = (a,b) => {
+//     return a - b
+// }
+// 
+// // never nunca devolvera nada
+// function throwError( message: string):never{
+//     throw new Error( message );
+// };
 
-function rele ( {marca, bobina}: {marca: string, bobina: number}): number{
-    console.log(`el contactor marca : ${marca} y la bobina es de ${bobina}V`)
-    return bobina
-}
 
-let allenbradley = rele( {marca: 'siemens', bobina:24} )
+// // un arreglo de string por inferencia
+// const avengers = ['spideman','iroman','antman','hulk']
+// 
+// // funcion anonima por inferencia
+// avengers.forEach( ( avengers ) => {
+//     console.log( avengers )
+// })
 
-// callback
-const manzanas = (fn: (name: string) => void) => { // NOTA: cuando la funcion no devueve nada se coloca void
-    fn('fruta')                             // si retorna algn valor se coloca el tipo ejemplo string
-}                                           // si no le pasas nada colocara undefined
 
-const fruta = (name: string) => {
-    console.log(name)
-}
+// objetos : estos pueden hacer inferencia 
 
-manzanas( fruta )
+// let contactor = {
+//     marca: 'siemens',
+//     corriente: 25,
+//     operativo: true
+// }
+// 
+// let dispocitivo = ( marca: string, corriente: number, operativo: boolean){
+//     return {marca,corriente,operativo}
+// }
+// 
+// let rele = dispocitivo( 'schneider',24,false )
 
-//44:18
+// type alias 
+// los alias deben empezar en mayuscula
+// type Contactor = {
+//     marca: string,
+//     corriente: number,
+//     operativo: boolean
+// }
+// 
+// let contactor : Contactor = {
+//     marca: 'siemens',
+//     corriente: 25,
+//     operativo: true
+// }
+// 
+// let dispocitivo = ( marca: string, corriente: number, operativo: boolean): Contactor => {
+//     return {marca,corriente,operativo}
+// }
+// 
+// let rele = dispocitivo( 'schneider',24,false )
+// 
+// let proteccion = {
+//     marca: 'abb',
+//     corriente: 10,
+//     operativo: false
+// }
+// 
+// function guardamotor ( proteccion: Contactor) : Contactor{
+//     let { marca,corriente,operativo } = proteccion
+//     return { marca,corriente,operativo }
+// }
+// 
+// guardamotor ( {marca: 'siemens',corriente: 5,operativo: false})
+
+//optional property
+
+//57:02
