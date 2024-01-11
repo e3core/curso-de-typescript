@@ -155,4 +155,166 @@
 
 //optional property
 
-//57:02
+// type idContacto = `${string}-${string}-${string}-${string}-${string}` // template union types
+// type Contactor = {
+//     readonly id?: idContacto; // se coloca el readonly cuando se quiera que la propiedad solo sea de lectura
+//     marca: string;
+//     corriente: number;
+//     operativo: boolean;
+//     existencia?: boolean; // se le coloca el signo ? al final para decir que esta propiedad es opcional si no se coloca sus instancias daran error
+// };
+
+// let contactor : Contactor = {
+//     marca: 'siemens',
+//     corriente: 25,
+//    operativo: true,
+// }
+
+// let dispocitivo = ( marca: string, corriente: number, operativo: boolean): Contactor => {
+//     return {id:crypto.randomUUID(),marca,corriente,operativo}
+// }
+
+// let rele = Object.freeze(dispocitivo('siemens',2,true)) // el Object.freeze hace que el codigo sea inmutable
+
+// contactor.existencia = false
+
+// contactor.existencia ?? true // esto se hace para colocar un valor por defecto
+
+// la diferencia de readonly y Object.freeze es que readonly no sera compilado a js en cambio Object si
+
+// template union types
+
+// type hexadecimalColor = `#${string}`
+// const color: hexadecimalColor= '0033ff' // como no tiene el # dara el error
+// const color2: hexadecimalColor = '#0033ff' // este si posse el # por ese no da el error
+
+// union types
+/*
+type variador = "local" | "remoto" | "ethernet" | "modbus" | "serial"; // union types
+
+let bornera: string | number // esto quiere decir que la variable puede se string o number
+
+let regleta : string | 20 // esto quiere decir que la variable puede se string o 20
+
+type idContacto = `${string}-${string}-${string}-${string}-${string}`; // template union types
+
+type Contactor = {
+    readonly id?: idContacto; 
+    marca: string;
+    corriente: number;
+    operativo: boolean;
+    existencia?: variador; 
+};
+
+let contactor: Contactor = {
+    marca: "siemens",
+    corriente: 25,
+    operativo: true,
+};
+
+let dispocitivo = (
+    marca: string,
+    corriente: number,
+    operativo: boolean
+): Contactor => {
+    return { id: crypto.randomUUID(), marca, corriente, operativo };
+};
+*/
+
+// let termico = dispocitivo('siemens',3,true)
+
+// termico.existencia = 'remoto' // si se coloca un valor que no este cargado en el type dara error
+// termico.existencia = "local"; // si se coloca un valor que no este cargado en el type dara error
+
+// intersection types 
+
+// type heroBasic = {
+//    name : string
+//    age : number
+// }
+
+// type heroProperty = {
+//    isActive? : boolean
+//     powerScale? : string
+// }
+
+// intersection types 
+// type Hero = heroBasic & heroProperty // intersection types 
+
+// let hero: Hero = {
+//     name: 'thor',
+//     age: 1500
+// } 
+
+
+// function createHero(input: heroBasic): Hero {
+//     const { name, age } = input
+
+//     return {
+//         name,age,isActive : true, powerScale : 'exito'
+//     }
+// }
+
+// type index
+
+type HeroProperties = {
+    isActive: boolean,
+    address: {
+        planet: string,
+        city: string
+    }
+}
+
+const addressHero : HeroProperties['address'] = {
+    planet: 'tierra',
+    city : 'madrid'
+}
+
+// type from value con el typeof se extrae el tipo de una funcionobjeto etc
+
+const address = {
+    planet: 'tierra',
+    city: 'maracay'
+}
+
+type Address = typeof address
+
+const adressYoutube: Address = {
+    planet: 'venus',
+    city: 'maracay'
+}
+
+
+// type from function return
+function createAdress() {
+    return {
+        planet: "venus",
+        city: "maracay",
+    };
+}
+
+type addgos = ReturnType<typeof createAdress>
+
+// array
+const lenguaje = [] // si se declara asi el tipo de dato sera never
+const lenguajes: string[] = []  // una manera
+const programacion : Array<string> = [] // otra manera
+const programadores :( string | number )[] = [] // o es string o es number
+const heroes: HeroProperties[] = [] //de tipo heroProperty
+lenguajes.push('javascript')
+
+
+type CellValue = 'X' | 'O' | ''
+// Y A ESTO SE LE LLAMA TUPLA OSEA UN ARREGLO CON UNA TAMAÑO DEFINIDO 
+type gameBoard = [
+    [CellValue, CellValue, CellValue],
+    [CellValue, CellValue, CellValue],
+    [CellValue, CellValue, CellValue],
+];
+const gameBoard: gameBoard = [
+    ["X", "O", "X"],
+    ["X", "O", "X"],
+    ["X", "O", "X"]
+]; 
+//1:38:15
+
