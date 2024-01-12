@@ -256,7 +256,7 @@ let dispocitivo = (
 // }
 
 // type index
-
+/*
 type HeroProperties = {
     isActive: boolean,
     address: {
@@ -304,6 +304,7 @@ const heroes: HeroProperties[] = [] //de tipo heroProperty
 lenguajes.push('javascript')
 
 
+let matriz: array[][] = []
 type CellValue = 'X' | 'O' | ''
 // Y A ESTO SE LE LLAMA TUPLA OSEA UN ARREGLO CON UNA TAMAÑO DEFINIDO 
 type gameBoard = [
@@ -316,5 +317,56 @@ const gameBoard: gameBoard = [
     ["X", "O", "X"],
     ["X", "O", "X"]
 ]; 
-//1:38:15
+
+//tuplas
+*/
+
+type RGB = [number,number,number]
+
+let color : RGB = [255,6,34]
+
+// las tuplas son mutables 
+
+color.push(34); // esto agrega otro indice a las tuplas coa que no deberia
+
+// para areglar esto se le coloca un readonly en el type de la tupla
+
+// enumeraciones
+
+enum ERROR_TYPES { // esto genera mucho codigo por eso en ocaciones se le agrega el const para no generar cogigo de mas
+    NOT_FOUND,     // cuando se quiera creear una biblioteca o que se use afuera es mejor no colocarle el const
+    UNAUTHORIZED,
+    FORBIDDEN
+}
+
+function mostrarMensaje ( tipoDeError : ERROR_TYPES ) {
+    if(tipoDeError === ERROR_TYPES.NOT_FOUND){
+        console.log( 'no se encuentra el recurso' )
+    } else if(tipoDeError === ERROR_TYPES.UNAUTHORIZED){
+        console.log( 'no tienes permisos para acceder' )
+    } else if(tipoDeError === ERROR_TYPES.FORBIDDEN) {
+        console.log('no tienes permisos para acceder')
+    }
+}
+
+// los enum puede servir para coleccion de datos finitos
+
+// ASERCIONES DE TIPO
+
+const canvas = document.getElementById('canvas')
+// a esto se le llama recuperar un elemento en este caso es de tipo canvas
+// y para hacer esto se hace de la siguiente manera
+if( canvas != null && canvas instanceof HTMLCanvasElement){
+    const ctx = canvas.getContext('2d') // Este metodo solo es de este html
+}
+
+const button = document.getElementById('button')
+// es inferencia -> typescript se da cuenta que dentro del if 
+// ya solo el button va a poder ser un HTMLButtonElement
+if (button != null && button instanceof HTMLButtonElement){
+    const ctx = button.getAttribute('jjj')
+}
+
+// 41:50
+
 
