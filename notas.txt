@@ -12,3 +12,9 @@ tomar en cuenta que ni node ni el navegador podran leer typescript solo javascri
 
 - en ejecucion no tomara en cuenta los tipados
 
+- los moduulos en typescript deben de llevar la extension .mts
+
+- typescript no realiza validaciones
+
+- type.d.ts el .d. significa definicion el cual es un archivo dondesolo iran la sdefinciones de un 
+codigo osea las exportaciones de types y de interface 

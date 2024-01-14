@@ -320,7 +320,7 @@ const gameBoard: gameBoard = [
 
 //tuplas
 */
-
+/*
 type RGB = [number,number,number]
 
 let color : RGB = [255,6,34]
@@ -366,7 +366,415 @@ const button = document.getElementById('button')
 if (button != null && button instanceof HTMLButtonElement){
     const ctx = button.getAttribute('jjj')
 }
+// typeof para tipos: string boolean number
+// instanceof para instancias : ejemplos fechas
 
-// 41:50
+*/
 
+
+// fetching de datos en typescript
+
+// quicktype.io esto sirve para copiar una API y y luego ver los tipos de cada dato
+// esto devolvera el tipado 
+
+/*
+export type GithubRepo = {
+  total_count: number;
+  incomplete_results: boolean;
+  items: Item[];
+};
+
+export type Item = {
+  id: number;
+  node_id: string;
+  name: string;
+  full_name: string;
+  private: boolean;
+  owner: Owner;
+  html_url: string;
+  description: null | string;
+  fork: boolean;
+  url: string;
+  forks_url: string;
+  keys_url: string;
+  collaborators_url: string;
+  teams_url: string;
+  hooks_url: string;
+  issue_events_url: string;
+  events_url: string;
+  assignees_url: string;
+  branches_url: string;
+  tags_url: string;
+  blobs_url: string;
+  git_tags_url: string;
+  git_refs_url: string;
+  trees_url: string;
+  statuses_url: string;
+  languages_url: string;
+  stargazers_url: string;
+  contributors_url: string;
+  subscribers_url: string;
+  subscription_url: string;
+  commits_url: string;
+  git_commits_url: string;
+  comments_url: string;
+  issue_comment_url: string;
+  contents_url: string;
+  compare_url: string;
+  merges_url: string;
+  archive_url: string;
+  downloads_url: string;
+  issues_url: string;
+  pulls_url: string;
+  milestones_url: string;
+  notifications_url: string;
+  labels_url: string;
+  releases_url: string;
+  deployments_url: string;
+  created_at: Date;
+  updated_at: Date;
+  pushed_at: Date;
+  git_url: string;
+  ssh_url: string;
+  clone_url: string;
+  svn_url: string;
+  homepage: null | string;
+  size: number;
+  stargazers_count: number;
+  watchers_count: number;
+  language: Language | null;
+  has_issues: boolean;
+  has_projects: boolean;
+  has_downloads: boolean;
+  has_wiki: boolean;
+  has_pages: boolean;
+  has_discussions: boolean;
+  forks_count: number;
+  mirror_url: null;
+  archived: boolean;
+  disabled: boolean;
+  open_issues_count: number;
+  license: License | null;
+  allow_forking: boolean;
+  is_template: boolean;
+  web_commit_signoff_required: boolean;
+  topics: string[];
+  visibility: Visibility;
+  forks: number;
+  open_issues: number;
+  watchers: number;
+  default_branch: DefaultBranch;
+  score: number;
+};
+
+export enum DefaultBranch {
+  Dev = "dev",
+  Main = "main",
+  Master = "master",
+}
+
+export enum Language {
+  HTML = "HTML",
+  JavaScript = "JavaScript",
+  ObjectiveC = "Objective-C",
+  TypeScript = "TypeScript",
+}
+
+export type License = {
+  key: Key;
+  name: Name;
+  spdx_id: SpdxID;
+  url: null | string;
+  node_id: NodeID;
+};
+
+export enum Key {
+  Apache20 = "apache-2.0",
+  GPL30 = "gpl-3.0",
+  MIT = "mit",
+  Other = "other",
+}
+
+export enum Name {
+  ApacheLicense20 = "Apache License 2.0",
+  GNUGeneralPublicLicenseV30 = "GNU General Public License v3.0",
+  MITLicense = "MIT License",
+  Other = "Other",
+}
+
+export enum NodeID {
+  MDc6TGljZW5ZZTA = "MDc6TGljZW5zZTA=",
+  MDc6TGljZW5ZZTEz = "MDc6TGljZW5zZTEz",
+  MDc6TGljZW5ZZTI = "MDc6TGljZW5zZTI=",
+  MDc6TGljZW5ZZTk = "MDc6TGljZW5zZTk=",
+}
+
+export enum SpdxID {
+  Apache20 = "Apache-2.0",
+  GPL30 = "GPL-3.0",
+  MIT = "MIT",
+  Noassertion = "NOASSERTION",
+}
+
+export type Owner = {
+  login: string;
+  id: number;
+  node_id: string;
+  avatar_url: string;
+  gravatar_id: string;
+  url: string;
+  html_url: string;
+  followers_url: string;
+  following_url: string;
+  gists_url: string;
+  starred_url: string;
+  subscriptions_url: string;
+  organizations_url: string;
+  repos_url: string;
+  events_url: string;
+  received_events_url: string;
+  type: Type;
+  site_admin: boolean;
+};
+
+export enum Type {
+  Organization = "Organization",
+  User = "User",
+}
+
+export enum Visibility {
+  Public = "public",
+}
+
+// esto tiene que ser en un modulo .mts
+const API_URL = 'https://api.github.com/search/repositories?q=javascript'
+
+const response = await fetch(API_URL)
+
+if(!response.ok) {
+    throw new Error('Request failed')
+}
+// el as dice que el await sera de tipo githubRepo
+const data = await response.json() as GithubRepo
+
+const repos = data.items.map( repos => {
+    return {
+        name : repos.id,
+        id: repos.name,
+        otro: repos.html_url
+    }
+})
+
+*/
+
+// LAS INTERFACES interface  ( las interface es como un molde )
+// las interfaces son parecidas pero no son lo mismo que los type
+/*
+interface Heroe {
+    id: string,
+    name: string,
+    age: number,
+    saludar: () => void
+}
+
+const heroe : Heroe = {
+    id: '1',
+    name: 'spiderman',
+    age: 20,
+    saludar: () => {
+        console.log( 'hola' )
+    }
+}
+
+// otro ejemplo donde se puede sacar una interface de una interface
+interface Producto {
+    id: number
+    nombre:string
+    precio: number
+    quantity: number
+}
+
+interface CarritoDeCompras {
+    totalPrice: number
+    productos: (Producto | Zapatilla)[]
+}
+
+const carrito: CarritoDeCompras = {
+    totalPrice: 3400,
+    productos: [
+        {
+            id: 1,
+            nombre: 'shampo',
+            precio: 230,
+            quantity: 2
+        },
+        {
+            id: 2,
+            nombre: 'harina',
+            precio: 346,
+            quantity: 5
+        }
+    ]
+}
+
+
+
+// extender ua interface cosa que no hacen los types
+
+interface Zapatilla extends Producto{
+    talla: number
+}
+
+const zapatos: CarritoDeCompras = {
+    totalPrice: 3400,
+    productos: [
+        {
+            id: 1,
+            nombre: 'adidas',
+            precio: 230,
+            quantity: 2,
+            talla: 34
+        },
+        {
+            id: 2,
+            nombre: 'nike',
+            precio: 346,
+            quantity: 5,
+            talla:23
+        }
+    ]
+}
+
+// otra manera de realizar extensiones péro que no es muy recomendada
+
+interface devOp{
+    line: string
+    users: {
+        name: string
+        city: string
+    }
+}
+
+interface devOp{
+    done: boolean
+}
+
+let prueba: devOp = {
+    line: 'hola mundo',
+    users: {
+        name: 'hector',
+        city: 'maracay'
+    },
+    done:true
+}
+
+// nota las inteface no pueden hacer tipos primitivos ejemplo const RGB = [0,0,0]
+
+// es mas recomendado usar mas tipos que interface pero para las clases es mejor usar interfarse
+
+// NArrowing . es hacer un embudo de tipados osea si una variable tiene dos typos pero usar 
+//el tipo dependiendo el escenario
+
+function mostrarLongitud(objeto: number | string){
+    if( typeof objeto === 'string'){
+            return objeto.length;
+    }
+}
+
+// otro ejemplo
+
+interface Mario {
+    company: 'nintendo', // aqui no se le coloca un tipado como tal si no un valor que no se podra cambiar
+    nombre: string,
+    saltar: () => void
+}
+
+interface Sonic {
+    company: 'Sega',
+    nombre: string,
+    correr: () => void
+}
+
+type Personaje = Mario | Sonic
+// primera manera
+
+/*
+function jugar ( personaje: Personaje){
+    if (personaje.company === 'nintendo') {
+        personaje.saltar()// este es mario
+        return
+    }
+    // seguro que solo llega sonic
+    personaje.correr()
+}
+*/
+
+// segunda manera
+//type guard
+// comprobar si personaje es sonic
+// esta funcion determina si es o no sonic
+// es recomendable no usarlas mucho
+/*
+function checkIsSonic( personaje: Personaje): personaje is Sonic {
+    return ( personaje as Sonic ).correr != undefined
+}
+
+function jugar( personaje: Personaje) {
+    if(checkIsSonic(personaje)){
+        personaje.correr()
+    }
+}
+
+// otro ejeplo pero viendo el never
+function fn(x: string | number){
+    if( typeof x === 'string'){
+        x.toLowerCase()
+    } else if( typeof x === 'number'){
+        x.toFixed(2)
+    } else {
+        console.log(typeof(x)) // que vendria siendo never
+    }
+}
+*/
+
+class Avengers {
+    readonly  name: string
+    private powerScore: number // nota a diferencia de # es que cuando compila a javascript aqui sera estatico
+    public wonBattles: number = 0
+    protected age: number = 0 // el protect proteje los datos de las instancias pero se pueden usar en las herencias
+    constructor( name: string, powerScore: number){
+        this.name = name
+        this.powerScore = powerScore
+    }
+
+    get fullName() {
+        return `${this.name}, de poder ${this.powerScore}`
+    }
+
+    set power(newPower: number) {
+        if (newPower <= 100) {
+            this.powerScore = newPower
+        } else {
+            throw new Error('Power score cannot be more than 100')
+        }
+    }
+}
+
+let superHero = new Avengers('Spiderman',56)
+
+// implementacion de interfaces en la clases
+
+interface Hero {
+    name: string
+    powerScore: string
+    wonBattles: number
+    age: number
+}
+
+class Hero implements Hero {
+    constructor( name: string,age:number ){
+        this.name = name
+        this.age = age
+    }
+}
 
